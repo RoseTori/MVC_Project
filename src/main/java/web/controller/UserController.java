@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
-import web.service.UserService;
+import web.service.*;
 
 import java.util.List;
 
@@ -31,6 +31,11 @@ public class UserController {
         model.addAttribute("users", users);
         return "users";
     }
+    @GetMapping("/users/test")
+    @ResponseBody
+    public String test() {
+        return "Controller is working!";
+    }
 
 
     @GetMapping("/users/create")
@@ -53,7 +58,7 @@ public class UserController {
         return "edit";
     }
 
-        @PostMapping("/users/edit/{id}")
+    @PostMapping("/users/edit/{id}")
     public String editUser(@PathVariable     Long id, @ModelAttribute User user) {
         user.setId(id);
         userService.updateUser(user);
