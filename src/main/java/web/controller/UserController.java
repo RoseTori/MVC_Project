@@ -55,6 +55,10 @@ public class UserController {
     public String showEditForm(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
+
+        if (user == null) {
+            return "redirect:/users";
+        }
         return "edit";
     }
 
