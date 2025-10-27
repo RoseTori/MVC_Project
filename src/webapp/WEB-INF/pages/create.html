@@ -17,7 +17,7 @@
                     <label for="firstName" class="form-label">First Name</label>
                     <input type="text" class="form-control" id="firstName"
                            th:field="*{firstName}" placeholder="Enter first name"
-                           pattern="[A-Za-zÀ-ÿ\s]+"
+                           pattern="[A-Za-zÀ-ÿ\u0400-\u04FF\s]+"
                            title="Please enter letters only (spaces allowed)"
                            required
                            oninput="validateLetters(this)">
@@ -28,7 +28,7 @@
                     <label for="lastName" class="form-label">Last Name</label>
                     <input type="text" class="form-control" id="lastName"
                            th:field="*{lastName}" placeholder="Enter last name"
-                           pattern="[A-Za-zÀ-ÿ\s]+"
+                           pattern="[A-Za-zÀ-ÿ\u0400-\u04FF\s]+"
                            title="Please enter letters only (spaces allowed)"
                            required
                            oninput="validateLetters(this)">
@@ -48,7 +48,7 @@
 
 <script>
     function validateLetters(input) {
-        input.value = input.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '');
+        input.value = input.value.replace(/[^A-Za-zÀ-ÿ\u0400-\u04FF\s]/g, '');
 
         // Validate the field
         if (input.checkValidity()) {
