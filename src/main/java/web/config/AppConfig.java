@@ -25,11 +25,10 @@ public class AppConfig {
     @Autowired
     private Environment env;
 
-    @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("db.driver"));
-        dataSource.setUrl(env.getProperty("db.url"));
+        dataSource.setUrl(env.getProperty("db.url") + "&characterEncoding=UTF-8&useUnicode=yes");
         dataSource.setUsername(env.getProperty("db.username"));
         dataSource.setPassword(env.getProperty("db.password"));
         return dataSource;
@@ -60,6 +59,12 @@ public class AppConfig {
         props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql", "true"));
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto", "update"));
         props.put("hibernate.dialect", env.getProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect"));
+        props.put("hibernate.connection.charSet", "UTF-8");
+        props.put("hibernate.connection.characterEncoding", "UTF-8");
+        props.put("hibernate.connection.useUnicode", "true");
+        props.put("hibernate.connection.CharSet", "UTF-8");
+        props.put("hibernate.connection.characterEncoding", "UTF-8");
+        props.put("hibernate.connection.useUnicode", "true");
         props.put("hibernate.format_sql", "true");
         return props;
     }
